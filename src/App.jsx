@@ -16,7 +16,7 @@ function App() {
 
       <div className='github-repo'>
         <a href="https://github.com/ajoykumardas12/hello-firebase" target='_blank'>
-          <img src="/public/icons8-github.svg" alt="GitHub" />
+          <img src="/icons8-github.svg" alt="GitHub" />
         </a>
       </div>
     </div>
