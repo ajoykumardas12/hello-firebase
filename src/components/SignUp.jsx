@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 const SignUp = () =>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
     const navigate = useNavigate();
 
     const signUp = () => {
@@ -16,6 +18,11 @@ const SignUp = () =>{
         })
         .catch((error) => {
             console.log(error.message);
+            if(error.code === "auth/email-already-in-use"){
+                setErrorMessage("Email is already registered, try signing in")
+            }else if(error.code === "auth/weak-password"){
+                setErrorMessage("Password should be at least 6 characters")
+            }
         });
     };
 
@@ -39,6 +46,7 @@ const SignUp = () =>{
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} 
                 />
+                {errorMessage && <p className="error">{errorMessage}</p>}
                 <button type="submit">Sign Up</button>
             </form>
             <div>Already have an account? <Link to={"/signin"}>Sign In</Link></div>

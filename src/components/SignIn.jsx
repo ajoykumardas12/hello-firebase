@@ -4,19 +4,23 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, redirect, useNavigate } from "react-router-dom";
 
 const SignIn = () =>{
-    const navigate = useNavigate();
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const navigate = useNavigate();
 
     const signIn = (() => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // console.log(userCredential);
             navigate("/dashboard");
         })
         .catch((error) => {
-            console.log(error);
+            if(error.code === "auth/user-not-found"){
+                setErrorMessage("User not found!")
+            }else if(error.code === "auth/wrong-password"){
+                setErrorMessage("Wrong password")
+            }
         });
     })
 
@@ -39,6 +43,7 @@ const SignIn = () =>{
                     placeholder='Enter your password' 
                     value={password} onChange={(e) => setPassword(e.target.value)} 
                 />
+                {errorMessage && <p className="error">{errorMessage}</p>}
                 <button type="submit" >Sign In</button>
             </form>
             <div>Don't have an account yet? <Link to={"/"}>Sign Up</Link></div>
