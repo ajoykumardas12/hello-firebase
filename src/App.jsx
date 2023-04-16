@@ -13,6 +13,12 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
+
+      <div className='github-repo'>
+        <a href="https://github.com/ajoykumardas12/hello-firebase" target='_blank'>
+          <img src="/public/icons8-github.svg" alt="GitHub" />
+        </a>
+      </div>
     </div>
   )
 }

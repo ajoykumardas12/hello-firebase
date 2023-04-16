@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
   gap: 3rem;
+  position: relative;
 }
 
 .form{
@@ -18,10 +19,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
+}
+.form input{
+  font-size: 1rem;
 }
 
 .form button{
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
@@ -34,4 +39,10 @@
 
 button{
   cursor: pointer;
+}
+
+.github-repo{
+  position: absolute;
+  display: flex;
+  bottom: 2rem;
 }
